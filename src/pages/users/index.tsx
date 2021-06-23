@@ -24,13 +24,6 @@ import { Sidebar } from "../../components/Sidebar/Index";
 import Link from "next/link";
 import { useUsers } from "../../services/hooks/useUsers";
 
-interface User {
-  id: number;
-  name: string;
-  email: string;
-  createdAt: Date;
-}
-
 export default function UserList() {
   const { data, isLoading, isFetching, error } = useUsers();
 
@@ -87,7 +80,7 @@ export default function UserList() {
                   </Tr>
                 </Thead>
                 <Tbody>
-                  {data.map((user: User) => {
+                  {data.map((user) => {
                     return (
                       <Tr key={user.id}>
                         <Td px={["4", "4", "6"]}>
