@@ -4,19 +4,18 @@ import { theme } from "../styles/theme";
 import React from "react";
 import { SidebarProvider } from "../contexts/SidebarDrawerContext";
 import { server } from "../services/mirage/index";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from 'react-query/devtools'
+import { QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+import { client } from "../services/queryClient";
 
 if (process.env.NODE_ENV === "development") {
   server();
 }
 
-const client = new QueryClient();
-
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={client}>
-      <ReactQueryDevtools/>
+      <ReactQueryDevtools />
       <ChakraProvider theme={theme}>
         <SidebarProvider>
           <Component {...pageProps} />
