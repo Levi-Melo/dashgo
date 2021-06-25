@@ -24,7 +24,7 @@ export function server() {
     factories: {
       user: Factory.extend({
         name(i: number) {
-          return `Nome do usuario ${i + 1}`;
+          return faker.name.findName();
         },
         email() {
           return faker.internet.email().toLowerCase();
@@ -48,11 +48,10 @@ export function server() {
         const pageStart = (Number(page) - 1) * Number(per_page);
         const pageEnd = pageStart + Number(per_page);
 
-        const users = this.serialize(schema.all("user"))
-          .users.sort((a, b) => {
-            a.created_at - b.created_at;
-          })
-          .slice(pageStart, pageEnd);
+        const users = this.serialize(schema.all("user")).users.slice(
+          pageStart,
+          pageEnd
+        );
         return new Response(
           200,
           {
@@ -64,6 +63,7 @@ export function server() {
       this.get("/users:id");
       this.post("/users");
       this.namespace = "";
+      this.passthrough();
     },
   });
   return server;

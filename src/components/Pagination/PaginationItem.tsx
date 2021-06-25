@@ -5,7 +5,7 @@ interface PaginationItemProps {
   onPageChange: (page: number) => void;
 }
 
-export function PaginationIten({
+export function PaginationItem({
   number,
   onPageChange,
   isCurrent = false,

@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -17,15 +18,17 @@ import {
   Link,
 } from "@chakra-ui/react";
 
-import React, { useState } from "react";
-import { RiAddLine, RiPencilLine } from "react-icons/ri";
+import NextLink from "next/link";
+
+import { client } from "../../services/queryClient";
+import { api } from "../../services/api";
+import { useUsers } from "../../services/hooks/useUsers";
+
 import { Header } from "../../components/Header/Index";
 import { Pagination } from "../../components/Pagination/Index";
 import { Sidebar } from "../../components/Sidebar/Index";
-import NextLink from "next/link";
-import { useUsers } from "../../services/hooks/useUsers";
-import { client } from "../../services/queryClient";
-import { api } from "../../services/api";
+
+import { RiAddLine, RiPencilLine } from "react-icons/ri";
 
 export default function UserList() {
   const [page, setPage] = useState(1);
@@ -122,7 +125,7 @@ export default function UserList() {
                           </Box>
                         </Td>
                         <Td px={["4", "4", "6"]}>
-                          {isWide && <Text>{user.createdAt}</Text>}
+                          {isWide && <Text>{user.created_at}</Text>}
                         </Td>
                         <Td>
                           {isWide && (
